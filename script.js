@@ -31,8 +31,12 @@ function convertToRoman(num) {
 
 function convertCondition() {
     const num = parseInt(input.value);
-    if (isNaN(num) || num <= 0 || num >= 4000) {
-        output.textContent = "Please enter a number between 1 and 3999.";
+    if (num <= 0) {
+        output.textContent = "Please enter a number greater than or equal to 1.";
+    } else if (num >= 4000) {
+        output.textContent = "Please enter a number less than or equal to 3999";
+    } else if (isNaN(num)) {
+        output.textContent = "Please enter a valid number.";
     } else {
         const romans = convertToRoman(num);
         output.textContent = romans;
