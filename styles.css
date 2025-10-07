@@ -1,0 +1,156 @@
+:root{
+  --gap: 1.25rem;
+  --container-bg: #3b3b4f;
+  --accent: #ffbe41;
+  --input-height: clamp(3rem, 6vw, 4rem);
+  --font-base: clamp(1rem, 1.6vw, 1.125rem);
+}
+
+/* --- Global tweaks --- */
+* { box-sizing: border-box; }
+body {
+  min-height: 100vh;          /* avoid strict 100vh quirks on mobile */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* keep content near top so keyboard doesn't hide it */
+  gap: var(--gap);
+  padding: 2.5rem;
+  background-color: #1b1b32;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* header & logo */
+.header {
+  width: min(720px, 90%);
+  text-align: center;
+  font-size: 1.25rem;
+}
+.header img {
+  width: min(250px, 40%);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* main container */
+main {
+  width: min(900px, 90%);
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  padding-bottom: 1.5rem;
+}
+
+/* boxes */
+.container1, .container2 {
+  width: 100%;
+  padding: 1.25rem;
+  border: 3px solid white;
+  background-color: var(--container-bg);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  border-radius: 10px;
+  min-height: auto; /* avoid fixed heights */
+}
+
+/* input + label */
+p {
+  font-size: clamp(1.2rem, 3.2vw, 1.8rem);
+  margin-bottom: .25rem;
+  font-family: "Bokor", system-ui;
+}
+
+input[type="number"] {
+  width: 100%;
+  height: var(--input-height);    /* responsive height */
+  color: white;
+  padding: 6px 12px;
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  border: 1px solid #f5f6f7;
+  background-color: #0a0a23;
+  border-radius: 6px;
+  outline: none;
+}
+
+/* button */
+button {
+  width: 100%;
+  padding: .6rem;
+  border: none;
+  cursor: pointer;
+  font-size: clamp(1.1rem, 3vw, 1.9rem);
+  text-align: center;
+  background-color: var(--accent);
+  color: black;
+  border-radius: 6px;
+}
+
+/* output box */
+.container2 {
+  font-size: clamp(1.6rem, 3.6vw, 2.5rem);
+  text-align: center;
+  padding: 1rem;
+  min-height: 3.5rem; /* small minimum so it doesn't collapse */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Responsive adjustments --- */
+
+/* Small phones */
+@media (max-width: 600px) {
+  body { padding: 1rem; gap: .75rem; }
+  .header img { width: 160px; }
+  main { width: 100%; }
+  .container1, .container2 { padding: .8rem; }
+  input[type="number"] { height: clamp(2.6rem, 10vw, 3.2rem); font-size: 1.6rem; }
+  button { font-size: 1.2rem; padding: .55rem; }
+  .container2 { font-size: 1.6rem; min-height: 48px; }
+}
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  body { padding: 1.5rem; }
+  .header img { width: 200px; }
+  main { width: 85%; }
+  .container1, .container2 { padding: 1rem; }
+  input[type="number"] { height: clamp(3rem, 5vw, 3.6rem); }
+  button { font-size: 1.6rem; }
+}
+
+/* Desktop / large */
+@media (min-width: 1025px) {
+  body { padding: 3rem; }
+  .header { width: 40%; }
+  main { width: 40%; }
+  .container1, .container2 { width: 100%; }
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+#output {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#output.show {
+  animation: fadeIn 0.4s ease forwards;
+}
